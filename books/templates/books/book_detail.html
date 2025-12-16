@@ -1,0 +1,37 @@
+{% extends 'books/base.html' %}
+{% block title %}{{ book.title }} – Details{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 style="margin-top:0;margin-bottom:10px;font-size:1.05rem;">
+        {{ book.title }}
+    </h2>
+
+    <div class="detail-meta">
+        <div>
+            <div class="detail-label">Author</div>
+            <div class="detail-value">{{ book.author }}</div>
+        </div>
+        <div>
+            <div class="detail-label">Published</div>
+            <div class="detail-value">
+                {% if book.published_date %}{{ book.published_date }}{% else %}—{% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-description">
+        {% if book.description %}
+            {{ book.description|linebreaksbr }}
+        {% else %}
+            <span class="tag">No description provided</span>
+        {% endif %}
+    </div>
+
+    <div class="form-footer" style="margin-top:14px;">
+        <a href="{% url 'book_update' book.pk %}" class="btn btn-ghost">Edit</a>
+        <a href="{% url 'book_delete' book.pk %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'book_list' %}" class="btn btn-ghost">Back to list</a>
+    </div>
+</div>
+{% endblock %}

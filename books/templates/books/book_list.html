@@ -1,0 +1,51 @@
+{% extends 'books/base.html' %}
+
+{% block title %}Books – List{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <h2 style="margin:0;font-size:1.05rem;">Books</h2>
+        <span style="font-size:0.8rem;color:var(--text-muted);">
+            {{ books|length }} total
+        </span>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Description</th>
+                <th style="width:160px;">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td><a href="{% url 'book_detail' book.pk %}" class="link">{{ book.title }}</a></td>
+                    <td>{{ book.author }}</td>
+                    <td>
+                        {% if book.description %}
+                            {{ book.description|truncatechars:60 }}
+                        {% else %}
+                            <span class="tag">No description</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'book_detail' book.pk %}" class="btn btn-ghost" style="padding:4px 10px;font-size:0.8rem;">View</a>
+                        <a href="{% url 'book_update' book.pk %}" class="btn btn-ghost" style="padding:4px 10px;font-size:0.8rem;">Edit</a>
+                        <a href="{% url 'book_delete' book.pk %}" class="btn btn-danger" style="padding:4px 10px;font-size:0.8rem;">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No books added yet. Click “New Book” to create one.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

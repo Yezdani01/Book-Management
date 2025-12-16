@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Books CRUD{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'book/style.css' %}">
+</head>
+<body>
+<div class="app-shell">
+    <header class="app-header">
+        <div>
+            <div class="app-title">
+                Books Dashboard
+                <span class="app-title-badge">CRUD APPLICATION</span>
+            </div>
+            <div class="app-subtitle">
+                Manage your book records – create, view, edit and delete.
+            </div>
+        </div>
+
+        <div class="app-actions">
+            <a href="{% url 'book_list' %}" class="btn btn-ghost">All Books</a>
+            <a href="{% url 'book_create' %}" class="btn btn-primary">+ New Book</a>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
