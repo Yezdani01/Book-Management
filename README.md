@@ -32,6 +32,8 @@ This project is designed for **beginners learning Django** and demonstrates core
 
 ## 📂 Project Structure
 
+```bash
+
 Books-CRUD/
 │
 ├── Books_CRUD/ # Project settings
@@ -59,7 +61,7 @@ Books-CRUD/
 ├── manage.py
 └── README.md
 
-
+```
 ---
 
 ## ⚙️ Setup Instructions
